@@ -1,5 +1,5 @@
 // Import Statements
-package SIMPLAnalyser;
+package YAMLAnalyser;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -50,7 +50,7 @@ public class TicketAnalyzer {
 	// ** Note below is hard-coded in some places - not sure benefit of using a
 	// constant here anyway
 	public static final String ENGINEER_FLAG = "*SUPPORT ENGINEER ONLY*";
-	public static final String CUSTOMER_UPDATE = "<p>Hello,</p><br><p>Our Security scan of your SIMPL SDF shows that you may have secrets that need to be rotated. Please review the results in each <b>_customer.txt</b> file uploaded above and let us know once the secrets have been rotated.</p>";
+	public static final String CUSTOMER_UPDATE = "<p>Hello,</p><br><p>Our Security scan of your .yaml file shows that you may have secrets that need to be rotated. Please review the results in each <b>_customer.txt</b> file uploaded above and let us know once the secrets have been rotated.</p>";
 	public static final String ENGINEER_UPDATE = "<p>Support Engineer,</p><br><p>Please respond to queries from customer and work with them to rotate passwords in <b>_engineer.txt</b> file(s) above which contains non customer-rotatable secrets.</p>";
 
 	public static void main(String[] args) throws URISyntaxException, ParseException, InterruptedException {
@@ -175,10 +175,10 @@ public class TicketAnalyzer {
 		// /mnt/c/work/diags/%s/
 		// 2) Create ticket directory in project root folder
 		// 3) Moves .yaml files from /mnt/c/work/diags/%s/ into
-		// /mnt/c/Users/RoryHandley/eclipse-workspace-work/SIMPLAnalyser/%s so we can
+		// /mnt/c/Users/RoryHandley/eclipse-workspace-work/YAMLAnalyser/%s so we can
 		// process in this script.
 		String fullCommand = String.format(
-				"SyncSafely.sh -n %s -f %s && mkdir /mnt/c/Users/username/eclipse-workspace-work/SIMPLAnalyser/%s && mv /mnt/c/work/diags/%s/*%s /mnt/c/Users/username/eclipse-workspace-work/SIMPLAnalyser/%s/",
+				"SyncSafely.sh -n %s -f %s && mkdir /mnt/c/Users/username/eclipse-workspace-work/YAMLAnalyser/%s && mv /mnt/c/work/diags/%s/*%s /mnt/c/Users/username/eclipse-workspace-work/YAMLAnalyser/%s/",
 				ticketNumber, INPUT_FILE_POSTFIX, ticketNumber, ticketNumber, INPUT_FILE_POSTFIX, ticketNumber);
 
 		// Download diags to project root folder
@@ -194,7 +194,7 @@ public class TicketAnalyzer {
 	public static int moveDiags(String ticketNumber) {
 
 		String fullCommand = String.format(
-				"mv /mnt/c/Users/username/eclipse-workspace-work/SIMPLAnalyser/%s/*.txt /mnt/c/work/diags/%s/",
+				"mv /mnt/c/Users/username/eclipse-workspace-work/YAMLAnalyser/%s/*.txt /mnt/c/work/diags/%s/",
 				ticketNumber, ticketNumber);
 
 		if (WSLCommandRunner.syncSafely(fullCommand) == 0) {
