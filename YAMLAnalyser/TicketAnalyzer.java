@@ -393,7 +393,7 @@ public class TicketAnalyzer {
 		// Call load method with buffered reader as argument and return root map
 		Map<String, Object> root = yaml.load(br);
 
-		// Get Map associated with 'msw-deployment:deployment' key
+		// Get Map associated with 'deployment' key
 		Map<String, Object> deployment = (Map<String, Object>) root.get("deployment");
 
 		// Get a list of all the sites
